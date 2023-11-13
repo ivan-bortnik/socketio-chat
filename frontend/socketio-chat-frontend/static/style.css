@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+
+.page-wrapper {
+    background-color: #303952;
+    color: white;
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Rubik', sans-serif;
+}
+
+.page-wrapper {
+    background-color: #303952;
+    padding: 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-window {
+    flex-grow: 1;
+    list-style-type: none;
+    padding: 0;
+}
+
+.chat-window .username {
+    font-size: 10pt;
+    margin: 0;
+    margin-top: 16px;
+}
+
+.chat-message {
+    background-color: #596275;
+    padding: 8px;
+    border-radius: 8px;
+    margin: 8px 0;
+}
+
+.message-input {
+    background-color: white;
+    padding: 4px;
+    border-radius: 99px;
+    border: none;
+    display: flex;
+}
+
+.message-input input {
+    flex-grow: 1;
+    border: none;
+    margin: 0 16px;
+}
+
+.message-input button {
+    background-color: #546de5;
+    color: white;
+    border-radius: 99px;
+    border: none;
+    padding: 8px 16px;
+}
+
+.message-input button:hover {
+    background-color: #778beb;
+}
