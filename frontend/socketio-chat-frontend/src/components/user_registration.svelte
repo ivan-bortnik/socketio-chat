@@ -1,7 +1,7 @@
 <div class="user-registration">
     <div class="user-registration-body">
         <h2>Welcome</h2>
-        <input type="text" placeholder="Username" bind:value={ username }>
+        <input type="text" placeholder="Username" bind:value={ username } on:keydown={ enterKeyDown }>
         <button on:click={ register }>Enter</button>
     </div>
 </div>
@@ -13,6 +13,12 @@ import { createEventDispatcher } from 'svelte'
 const dispatch = createEventDispatcher()
 
 var username = "";
+
+function enterKeyDown(e) {
+    if (e.key == "Enter") {
+        register();
+    }
+}
 
 function register() {
     dispatch('register', {"username": username})

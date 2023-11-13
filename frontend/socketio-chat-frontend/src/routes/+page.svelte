@@ -14,7 +14,12 @@
     </ul>
 
     <div class="message-input">
-        <input type="text" placeholder="Message..." bind:value={ messageInput }>
+        <input
+            type="text"
+            placeholder="Message..."
+            bind:value={ messageInput }
+            on:keydown={ sendMesageKeyboard }>
+            
         <button on:click={ sendMessage }>Send</button>
     </div>
 
@@ -42,6 +47,12 @@ function registerUser(e) {
 function sendMessage() {
     socket.emit("message-sent", {"username": username, "content": messageInput});
     messageInput = "";
+}
+
+function sendMesageKeyboard(e) {
+    if (e.key == "Enter") {
+        sendMessage();
+    }
 }
 
 socket.on("sync-data", (data) => {
