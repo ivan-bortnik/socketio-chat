@@ -1,5 +1,9 @@
 <div class="page-wrapper">
 
+    {#if isRegistrationFormVisible}
+        <UserRegistration on:register={ registerUser }/>
+    {/if}
+
     <ul class="chat-window">
         {#each messages as msg, index}
             {#if index == 0 || messages[index-1].username != messages[index].username}
@@ -18,28 +22,31 @@
 
 <script>
 
-// Connect to server
+import UserRegistration from '../components/user_registration.svelte';
+
 import io from 'socket.io-client';
 const ENDPOINT = 'http://localhost:3000';
 
 const socket = io(ENDPOINT);
 
 var username = "User"
-
-var messages = [
-    {"username": "Bob", "content": "Lorem Ipsum"},
-    {"username": "Bob", "content": "Lorem Ipsum"},
-    {"username": "Bobette", "content": "Lorem Ipsum"},
-    {"username": "Bobette", "content": "Lorem Ipsum"},
-    {"username": "Bob", "content": "Lorem Ipsum"}
-]
-
+var isRegistrationFormVisible = true;
+var messages = []
 var messageInput = "";
+
+function registerUser(e) {
+    username = e.detail.username;
+    isRegistrationFormVisible = false;
+}
 
 function sendMessage() {
     socket.emit("message-sent", {"username": username, "content": messageInput});
     messageInput = "";
 }
+
+socket.on("sync-data", (data) => {
+    messages = data;
+});
 
 socket.on("broadcast-message", (newMessage) => {
     messages = [...messages, newMessage];
