@@ -10,8 +10,8 @@
     </ul>
 
     <div class="message-input">
-        <input type="text" placeholder="Message...">
-        <button>Send</button>
+        <input type="text" placeholder="Message..." bind:value={ messageInput }>
+        <button on:click={ sendMessage }>Send</button>
     </div>
 
 </div>
@@ -24,6 +24,8 @@ const ENDPOINT = 'http://localhost:3000';
 
 const socket = io(ENDPOINT);
 
+var username = "User"
+
 var messages = [
     {"username": "Bob", "content": "Lorem Ipsum"},
     {"username": "Bob", "content": "Lorem Ipsum"},
@@ -31,6 +33,17 @@ var messages = [
     {"username": "Bobette", "content": "Lorem Ipsum"},
     {"username": "Bob", "content": "Lorem Ipsum"}
 ]
+
+var messageInput = "";
+
+function sendMessage() {
+    socket.emit("message-sent", {"username": username, "content": messageInput});
+    messageInput = "";
+}
+
+socket.on("broadcast-message", (newMessage) => {
+    messages = [...messages, newMessage];
+});
 
 </script>
 
