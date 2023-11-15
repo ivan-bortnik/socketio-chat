@@ -30,7 +30,7 @@
 import UserRegistration from '../components/user_registration.svelte';
 
 import io from 'socket.io-client';
-const ENDPOINT = 'http://localhost:3000';
+const ENDPOINT = 'pc2cdi.ddns.net:3000';
 
 const socket = io(ENDPOINT);
 
