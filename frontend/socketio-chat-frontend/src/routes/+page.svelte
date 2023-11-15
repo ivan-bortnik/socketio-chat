@@ -30,7 +30,7 @@
 import UserRegistration from '../components/user_registration.svelte';
 
 import io from 'socket.io-client';
-const ENDPOINT = 'https://socketio-chat-p7kf.onrender.com:3000';
+const ENDPOINT = 'https://socketio-chat-p7kf.onrender.com:443';
 
 const socket = io(ENDPOINT);
 
