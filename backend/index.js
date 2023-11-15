@@ -8,7 +8,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: "jaunechiasse.netlify.app/",
     methods: ["GET", "POST"]
   }
 });
@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 });
 
 
-io.on('connection', (socket) => {
+io.on('connection', (saocket) => {
   console.log('a user connected');
   socket.emit('sync-data', messages);
 
