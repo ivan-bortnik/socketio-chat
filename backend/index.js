@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 });
 
 
-io.on('connection', (saocket) => {
+io.on('connection', (socket) => {
   console.log('a user connected');
   socket.emit('sync-data', messages);
 
